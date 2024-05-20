@@ -1,4 +1,5 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useContext, useReducer } from 'react';
+import { reducer } from './reducer';
 
 const initialState = {
     watchlist: [],
