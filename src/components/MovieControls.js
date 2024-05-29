@@ -1,15 +1,35 @@
 import React from 'react';
+import { useMovieContext } from '../context/GlobalContext';
+import * as actions from '../context/ActionTypes';
 
 const MovieControls = ({ movie, type }) => {
+    const MovieContext = useMovieContext();
+
     return (
-        <div>
+        <div className="inner-card-controls">
             {type === 'watchlist' && (
                 <>
-                    <button className="ctrl-btn">
-                        <i className="fa-solid fa-eye" />
+                    <button
+                        onClick={() => {
+                            MovieContext.MoviesDispatch({
+                                type: actions.ADD_MOVIE_TO_WATCHED,
+                                payload: movie,
+                            });
+                        }}
+                        className="ctrl-btn"
+                    >
+                        <i className="fa-solid fa-eye"></i>
                     </button>
-                    <button className="ctrl-btn">
-                        <i className="fa-fw fa fa-times" />
+                    <button
+                        onClick={() => {
+                            MovieContext.MoviesDispatch({
+                                type: actions.REMOVE_MOVIE_FROM_WATCHLIST,
+                                payload: movie.imdbID,
+                            });
+                        }}
+                        className="ctrl-btn"
+                    >
+                        <i className="fa-solid fa-xmark"></i>
                     </button>
                 </>
             )}
@@ -17,10 +37,10 @@ const MovieControls = ({ movie, type }) => {
             {type === 'watched' && (
                 <>
                     <button className="ctrl-btn">
-                        <i className="fa-solid fa-eye-slash" />
+                        <i className="fa-solid fa-eye-slash"></i>
                     </button>
                     <button className="ctrl-btn">
-                        <i className="fa-fw fa fa-times" />
+                        <i className="fa-solid fa-xmark"></i>
                     </button>
                 </>
             )}
