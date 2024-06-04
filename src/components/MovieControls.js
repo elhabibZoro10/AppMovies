@@ -36,10 +36,27 @@ const MovieControls = ({ movie, type }) => {
 
             {type === 'watched' && (
                 <>
-                    <button className="ctrl-btn">
+                    <button
+                    
+                    onClick={() => {
+                        MovieContext.MoviesDispatch({
+                            type: actions.MOVE_TO_WATCHLIST,
+                            payload: movie,
+                        });
+                    }}
+                    
+                    className="ctrl-btn">
                         <i className="fa-solid fa-eye-slash"></i>
                     </button>
-                    <button className="ctrl-btn">
+                    <button
+                    
+                    onClick={() => {
+                        MovieContext.MoviesDispatch({
+                            type: actions.REMOVE_MOVIE_FROM_WATCHED,
+                            payload: movie.imdbID,
+                        });
+                    }}
+                    className="ctrl-btn">
                         <i className="fa-solid fa-xmark"></i>
                     </button>
                 </>

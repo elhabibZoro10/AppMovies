@@ -33,7 +33,7 @@ export const reducer = (state, action) => {
         case actions.REMOVE_MOVIE_FROM_WATCHED:
             return {
                 ...state,
-                Watched: state.Watched.filter(
+                watched: state.watched.filter(
                     movie => movie.imdbID !== action.payload
                 ),
             };
